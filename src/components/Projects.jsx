@@ -34,7 +34,7 @@ const Projects = () => {
       description:
         "A Frontend web page for a food delivery website built with React. Features responsive UI, search, login/signup, and cart functionality by using Swiggy API.",
       codeLink: "https://github.com/Ujjwal-anand00/Edibles---Food-Delevery-",
-      liveLink: "https://edibles.netlify.app",
+      liveLink: "https://regal-blini-ac5fd7.netlify.app/",
       isNew: false,
     },
     {
