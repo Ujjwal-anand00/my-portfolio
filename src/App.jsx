@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import Nav from './components/Nav'
-import Body from './components/Body'
+import Body from "./components/Body";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
-    <>
-    <Body/>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Body />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

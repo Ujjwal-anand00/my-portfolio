@@ -4,10 +4,10 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      <div className="my-10">
+      <div className="my-10 max-w-6xl mx-auto">
         <div
           style={{ fontFamily: "Merienda, cursive" }}
-          className="text-7xl flex justify-center my-5 font-extrabold flex-col items-center gap-5"
+          className="text-6xl flex justify-center my-5 font-extrabold flex-col items-center gap-5"
         >
           <p className="bg-gradient-to-t from-slate-50 to-yellow-600 bg-clip-text text-transparent leading-relaxed overflow-visible">
             Igniting imagination from the void...
