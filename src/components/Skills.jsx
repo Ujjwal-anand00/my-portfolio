@@ -41,8 +41,9 @@ export default function Skills() {
         </div>
         <div className="mt-8 md:mt-14 lg:mt-24 justify-between">
           <div className="flex gap-5 sm:gap-6 lg:gap-12 flex-wrap">
-            {skills.map((skill) => (
+            {skills.map((skill , index) => (
               <div
+                key={index}
                 onMouseEnter={() => handleSkillShow(skill)}
                 onMouseLeave={() => handleSkillHide(skill)}
                 className={`${
@@ -56,8 +57,9 @@ export default function Skills() {
             ))}
           </div>
           <div className="flex gap-6 flex-wrap mt-12 sm:mt-14">
-            {allskills.map((skill) => (
+            {allskills.map((skill , index) => (
               <div
+                key={skill.name || index}
                 className={`${
                   skill.category == selectedSkill
                     ? "bg-gradient-to-r from-blue-200 to-cyan-200 text-gray-700 poppins-medium shadow-md"

@@ -8,20 +8,33 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    console.log("Form submitted");
+
+    const currentTime = new Date().toLocaleString();
+
+    const templateParams = {
+      name: form.current.elements.name.value,
+      message: form.current.elements.message.value,
+      time: currentTime,
+      title: "Portfolio Contact Form",
+    };
+    console.log("📤 Sending with params:", templateParams);
 
     emailjs
-      .sendForm(
+      .send(
         "service_l7h0e1r", // Replace with your actual Service ID
-        "template_sodtvov", // Replace with your actual Template ID
-        form.current,
-        "3m3YWa10c4hfTjQlC" // Replace with your actual Public Key
+        "template_cy2vr7m", // Replace with your actual Template ID
+        templateParams,
+        "NqG7h7YmJg60ZBXeh" // Replace with your actual Public Key
       )
       .then(
-        (result) => {
+        (res) => {
+          console.log("✅ Email sent:", res);
           alert("✅ Message sent successfully!");
           form.current.reset();
         },
         (error) => {
+          console.error("FAILED...", error); // Add this!
           alert("❌ Failed to send message. Please try again.");
         }
       );
@@ -98,15 +111,15 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name" // ✅ Needed for template variable {{name}}
                   placeholder="Enter your name..."
                   className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   required
                 />
               </div>
-
               <div className="mb-5">
                 <label
-                  htmlFor="email"
+                  htmlFor="name"
                   className="block mb-2 text-sm font-medium text-gray-300"
                 >
                   Email
@@ -114,7 +127,8 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  placeholder="Enter your email..."
+                  name="email" // ✅ Needed for template variable {{name}}
+                  placeholder="Enter your Email..."
                   className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                   required
                 />
@@ -129,6 +143,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message" // ✅ Needed for template variable {{message}}
                   rows="6"
                   placeholder="Leave a comment..."
                   className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
