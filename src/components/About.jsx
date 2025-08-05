@@ -1,10 +1,11 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ujjuImg from "../assets/ujju.jpg";
 import download from "../assets/download.png";
 import { Typewriter } from "react-simple-typewriter";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import { Link } from "react-router";
 
 const About = () => {
   return (
@@ -40,7 +41,14 @@ const About = () => {
           <p className="font-medium text-xl">Lovely Professional University</p>
         </div>
         <div>
-          <button className="btn btn-outline btn-info">Download Resume <img className="w-7 p-1" src={download}/><i class="fa-solid fa-download"></i></button>
+          <a
+            href="https://drive.google.com/file/d/1DNkcFur_kSSviDFr7R4cUSgnMi_XfrmT/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline btn-info"
+          >
+            Download Resume <img className="w-7 p-1" src={download} />
+          </a>
         </div>
         <div className="flex gap-6 justify-center py-4 text-3xl">
           <a
