@@ -2,6 +2,7 @@ import React from "react";
 import Blog from "../assets/projects/Blog.png";
 import Edibles from "../assets/projects/Edibles.png";
 import Tomato from "../assets/projects/Tomato.png";
+import GitHookUP from "../assets/projects/GitHookUP.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -19,6 +20,15 @@ const Projects = () => {
   };
 
   const projectList = [
+    {
+      title: "GitHookUp – A Developer Match Making Website",
+      img: GitHookUP,
+      description:
+        "GitHookUp is a real-time developer networking platform where programmers can connect, chat, and collaborate instantly. Built with the MERN stack and Socket.IO, it supports seamless messaging, profile management, and a responsive UI for smooth interaction across devices.",
+      codeLink: "https://github.com/Ujjwal-anand00/GitHookUP-WEB",
+      liveLink: "http://51.21.152.151/",
+      isNew: true,
+    },
     {
       title: "TypeVoid – A Blog Website",
       img: Blog,
