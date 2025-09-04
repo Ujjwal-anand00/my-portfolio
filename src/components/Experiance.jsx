@@ -5,6 +5,7 @@ import gokC from "../assets/certificates/gokC.jpg";
 import Cpp from "../assets/certificates/C++All.jpg";
 import Nptel from "../assets/certificates/Nptel.jpg";
 import CodeAi from "../assets/certificates/CodeAi.jpg";
+import Zidio from "../assets/certificates/Zidio.jpg";
 import React from "react";
 import Slider from "react-slick";
 
@@ -70,24 +71,35 @@ const Experiance = () => {
           Certification & Internship
         </h1>
 
-        <div className="bg-gradient-to-r from-slate-900 to-slate-700 p-8 rounded-xl shadow-md border-l-4 border-yellow-400">
-          <p className="text-3xl font-bold text-gray-200 mb-2">
-            Intern at Zidio Development
-          </p>
-          <p className="text-xl text-blue-50 mb-4">May 2025 to July 2025</p>
+        <div className="bg-gradient-to-r flex from-slate-900 to-slate-700 p-8 rounded-xl shadow-md border-l-4 border-yellow-400">
+          <div>
+            <p className="text-3xl font-bold text-gray-200 mb-2">
+              Intern at Zidio Development
+            </p>
+            <p className="text-xl text-blue-50 mb-4">May 2025 to July 2025</p>
 
-          <p className="text-2xl font-semibold text-blue-50 mb-3">
-            Responsibilities: Full Stack Development
-          </p>
+            <p className="text-2xl font-semibold text-blue-50 mb-3">
+              Responsibilities: Full Stack Development
+            </p>
 
-          <p className="text-lg text-blue-100 leading-relaxed font-sans">
-            During my internship at Zidio Development, I led the development of
-            a full-stack blog platform using the MERN stack with TypeScript. I
-            gained hands-on experience in JavaScript, Node.js, Express.js,
-            MongoDB, and React. I also resolved real-world backend issues,
-            enhancing my debugging skills and deepening my understanding of
-            scalable web application development.
-          </p>
+            <p className="text-lg text-blue-100 leading-relaxed font-sans">
+              During my internship at Zidio Development, I led the development
+              of a full-stack blog platform using the MERN stack with
+              TypeScript. I gained hands-on experience in JavaScript, Node.js,
+              Express.js, MongoDB, and React. I also resolved real-world backend
+              issues, enhancing my debugging skills and deepening my
+              understanding of scalable web application development.
+            </p>
+          </div>
+          <div>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://drive.google.com/file/d/1pSpJa0K-qLiz9ixjq4gRqCZ75X6C1yJb/view?usp=sharing"
+            >
+              <img className="w-150" src={Zidio} alt="Certificate"></img>
+            </a>
+          </div>
         </div>
         {/* 🔄 Slider Component */}
         <Slider {...sliderSettings}>

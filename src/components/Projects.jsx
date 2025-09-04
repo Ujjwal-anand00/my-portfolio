@@ -12,7 +12,7 @@ const Projects = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -68,7 +68,7 @@ const Projects = () => {
         <Slider {...sliderSettings}>
           {projectList.map((project, index) => (
             <div key={index} className="px-6">
-              <div className="card bg-white shadow-lg rounded-xl overflow-hidden">
+              <div className="card bg-white shadow-lg  rounded-xl overflow-hidden h-180">
                 <figure>
                   <img
                     src={project.img}
