@@ -65,7 +65,7 @@ const Experiance = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-slate-500 to-slate-800 py-20  rounded-2xl shadow-lg">
+    <div className="bg-gradient-to-r from-slate-500 to-slate-800 mb-2 mt-5 rounded-2xl shadow-lg">
       <div className="flex flex-col gap-6 max-w-6xl mx-auto">
         <h1 className="text-5xl font-extrabold text-gray-400 text-center mb-4">
           Certification & Internship

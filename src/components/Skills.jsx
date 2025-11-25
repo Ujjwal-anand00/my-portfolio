@@ -16,30 +16,13 @@ export default function Skills() {
 
   return (
     <div
-      className="pt-10 md:pt-20 px-5 lg:px-10 pb-20 flex flex-col max-w-6xl mx-auto justify-center gap-6"
+      className="pt-10 md:pt-10 px-5 lg:px-10 pb-10 flex flex-col max-w-6xl mx-auto justify-center gap-6"
       id="skills"
     >
-      <div className="flex items-center gap-4">
-        <span className="text-2.5xl lg:text-4xl poppins-medium">Skills</span>
+      <div className="flex items-center text-center gap-4">
+        <span className="text-5xl font-bold text-center text-gray-300 mb-5">Skills that make a difference</span>
         <img className="h-[38px] mb-1" src={puzzle} alt="" />
       </div>
-      <div className="mt-4 md:mt-12">
-        <div className="">
-          <div className="font-semibold text-lg lg:text-1.5xl">
-            Empowering Innovations :
-          </div>
-          <div className="mt-2 text-lg lg:text-1.5xl italic">
-            Skills that make a difference
-          </div>
-        </div>
-        <div className="mt-5 md:mt-10 italic tracking-wide leading-7 lg:text-lg">
-          "I'm an accomplished developer with a wide-ranging skill set,
-          proficient in various programming languages and technologies. My
-          expertise covers both front-end and back-end development, and I'm
-          well-versed in essential tools and platforms, ensuring a versatile
-          approach to software solutions."
-        </div>
-        <div className="mt-8 md:mt-14 lg:mt-24 justify-between">
           <div className="flex gap-5 sm:gap-6 lg:gap-12 flex-wrap">
             {skills.map((skill , index) => (
               <div
@@ -70,8 +53,8 @@ export default function Skills() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        
+      
     </div>
   );
 }

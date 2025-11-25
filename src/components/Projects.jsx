@@ -1,4 +1,5 @@
 import React from "react";
+import UMDB from "../assets/projects/Movie.png";
 import Blog from "../assets/projects/Blog.png";
 import Edibles from "../assets/projects/Edibles.png";
 import Tomato from "../assets/projects/Tomato.png";
@@ -21,13 +22,23 @@ const Projects = () => {
 
   const projectList = [
     {
+      title: "UMDB – A Movie Database Android App",
+      img: UMDB,
+      description:
+        "UMDB is a comprehensive movie database Android application built with React Native. It features movie browsing, detailed information, user reviews, and a favorites list, all presented in a sleek and intuitive interface.",
+      codeLink: "https://github.com/Ujjwal-anand00/ChillPlex",
+      liveLink: "",
+      isNew: true,
+
+    },
+    {
       title: "GitHookUp – A Developer Match Making Website",
       img: GitHookUP,
       description:
         "GitHookUp is a real-time developer networking platform where programmers can connect, chat, and collaborate instantly. Built with the MERN stack and Socket.IO, it supports seamless messaging, profile management, and a responsive UI for smooth interaction across devices.",
       codeLink: "https://github.com/Ujjwal-anand00/GitHookUP-WEB",
       liveLink: "http://51.21.152.151/",
-      isNew: true,
+      isNew: false,
     },
     {
       title: "TypeVoid – A Blog Website",
@@ -36,7 +47,7 @@ const Projects = () => {
         "A modern full-stack blog platform built with MERN & TypeScript. Features publishing, editing, search, login/signup, and responsive UI.",
       codeLink: "https://github.com/Ujjwal-anand00/Blog_Web",
       liveLink: "https://typevoid-blog-web.vercel.app/",
-      isNew: true,
+      isNew: false,
     },
     {
       title: "Edibles - A Food Delivery Website",
@@ -55,7 +66,7 @@ const Projects = () => {
       liveLink: "https://tomato-ujjwal.netlify.app/",
       isNew: false,
     },
-    // You can add more projects here...
+    
   ];
 
   return (
@@ -68,7 +79,7 @@ const Projects = () => {
         <Slider {...sliderSettings}>
           {projectList.map((project, index) => (
             <div key={index} className="px-6">
-              <div className="card bg-white shadow-lg  rounded-xl overflow-hidden h-180">
+              <div className="card bg-white shadow-lg  rounded-xl overflow-hidden h-150">
                 <figure>
                   <img
                     src={project.img}

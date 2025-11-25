@@ -31,6 +31,11 @@ export const allskills = [
         imgUrl: "/images/react.png"
     },
     {
+        name: "React Native",
+        category: "Frontend",
+        imgUrl: "/images/react-native.png"
+    },
+    {
         name: "Next JS",
         category: "Frontend",
         imgUrl: "/images/nextjs.png"
