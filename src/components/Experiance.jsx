@@ -11,7 +11,7 @@ import Slider from "react-slick";
 
 const Experiance = () => {
   const sliderSettings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 800,
     slidesToShow: 3,

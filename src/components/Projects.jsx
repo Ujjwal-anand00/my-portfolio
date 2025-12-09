@@ -13,13 +13,12 @@ const Projects = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     arrows: false,
   };
-
   const projectList = [
     {
       title: "UMDB – A Movie Database Android App",
@@ -61,7 +60,7 @@ const Projects = () => {
     {
       title: "Tomato - Food Delevery Website",
       img: Tomato,
-      description: "This project is a food delevery system.",
+      description: "A Swiggy-inspired food delivery application built using React.js with a clean, responsive UI, real-time restaurant listings, menu browsing, and a smooth user experience — developed as part of my React learning journey.",
       codeLink: "https://github.com/Ujjwal-anand00/tomatoFood",
       liveLink: "https://tomato-ujjwal.netlify.app/",
       isNew: false,
@@ -79,12 +78,12 @@ const Projects = () => {
         <Slider {...sliderSettings}>
           {projectList.map((project, index) => (
             <div key={index} className="px-6">
-              <div className="card bg-white shadow-lg  rounded-xl overflow-hidden h-150">
+              <div className="card bg-gray-300 shadow-lg  rounded-xl overflow-hidden h-[500px] lg:h-[600px]">
                 <figure>
                   <img
                     src={project.img}
                     alt={project.title}
-                    className="h-110 w-full object-cover"
+                    className="w-full h-[150px] sm:h-[200px] lg:h-[450px] object-cover"
                   />
                 </figure>
                 <div className="card-body px-6 py-4">
@@ -112,7 +111,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     >
-                      Live
+                      Live 
                     </a>
                   </div>
                 </div>
