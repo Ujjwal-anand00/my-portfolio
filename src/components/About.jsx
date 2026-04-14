@@ -42,7 +42,7 @@ const About = () => {
         </div>
         <div>
           <a
-            href="https://drive.google.com/file/d/1WGnshgl1cFIoPB1spu4wknnGNDFPHq-P/view?usp=sharing"
+            href="https://drive.google.com/file/d/1MU3Lc0Uk7x90saiTdzS78Vacdx5iFWev/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-outline btn-info"
