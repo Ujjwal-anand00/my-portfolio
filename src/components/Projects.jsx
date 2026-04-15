@@ -4,6 +4,7 @@ import Blog from "../assets/projects/Blog.png";
 import Edibles from "../assets/projects/Edibles.png";
 import Tomato from "../assets/projects/Tomato.png";
 import GitHookUP from "../assets/projects/GitHookUP.png";
+import Gyano from "../assets/projects/Gyano.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,20 +22,28 @@ const Projects = () => {
   };
   const projectList = [
     {
-      title: "UMDB – A Movie Database Android App",
+      title: "Gyano - A Digital Learning Platform",
+      img: Gyano,
+      description:
+        "Gyano is a full-stack digital learning platform designed to deliver a seamless and personalized education experience. It features secure authentication, course exploration, enrollment systems, and an interactive lesson player with offline video access using IndexedDB. Built with a scalable MERN architecture, the platform includes user dashboards, admin controls, and is evolving with AI-driven insights and a mobile app for enhanced accessibility.",
+      codeLink: "https://github.com/Ujjwal-anand00/Gyano",
+      liveLink: "https://gyano.vercel.app/",
+      isNew: true,
+    },
+    {
+      title: "ChillPlex – A Movie Database Android App",
       img: UMDB,
       description:
-        "UMDB is a comprehensive movie database Android application built with React Native. It features movie browsing, detailed information, user reviews, and a favorites list, all presented in a sleek and intuitive interface.",
+        "ChillPlex is a React Native-based mobile application that allows users to explore and view detailed movie information using the TMDB API. It provides real-time movie data including descriptions, ratings, and posters through a clean and responsive interface. The app focuses on seamless navigation and efficient API integration to deliver a smooth movie discovery experience.",
       codeLink: "https://github.com/Ujjwal-anand00/ChillPlex",
       liveLink: "",
-      isNew: true,
-
+      isNew: false,
     },
     {
       title: "GitHookUp – A Developer Match Making Website",
       img: GitHookUP,
       description:
-        "GitHookUp is a real-time developer networking platform where programmers can connect, chat, and collaborate instantly. Built with the MERN stack and Socket.IO, it supports seamless messaging, profile management, and a responsive UI for smooth interaction across devices.",
+        "GitHookUP is a full-stack MERN application that connects developers in real time through chat and video calling features. It leverages WebSockets (Socket.IO) for instant communication, along with secure authentication using JWT and bcrypt. Designed for scalability and performance, the platform is deployed on AWS EC2 with Nginx and PM2, enabling developers to collaborate, network, and interact seamlessly.",
       codeLink: "https://github.com/Ujjwal-anand00/GitHookUP-WEB",
       liveLink: "http://51.21.152.151/",
       isNew: false,
@@ -43,7 +52,7 @@ const Projects = () => {
       title: "TypeVoid – A Blog Website",
       img: Blog,
       description:
-        "A modern full-stack blog platform built with MERN & TypeScript. Features publishing, editing, search, login/signup, and responsive UI.",
+        "TypeVoid is a full-stack blog application built using the MERN stack with TypeScript, enabling users to create, edit, search, and manage blog posts seamlessly. It features secure user authentication, dynamic content rendering, and an intuitive UI for a smooth writing and reading experience. Designed for performance and scalability, TypeVoid demonstrates robust backend handling and efficient state management.",
       codeLink: "https://github.com/Ujjwal-anand00/Blog_Web",
       liveLink: "https://typevoid-blog-web.vercel.app/",
       isNew: false,
@@ -52,7 +61,7 @@ const Projects = () => {
       title: "Edibles - A Food Delivery Website",
       img: Edibles,
       description:
-        "A Frontend web page for a food delivery website built with React. Features responsive UI, search, login/signup, and cart functionality by using Swiggy API.",
+        "Edibles is a frontend food delivery web application inspired by Swiggy, built during my React learning journey. It integrates the Swiggy API for fetching restaurant and menu data and showcases dynamic UI rendering, component-based architecture, and responsive design. While it is not fully functional, the project demonstrates strong fundamentals in React, API handling, and modern UI development.",
       codeLink: "https://github.com/Ujjwal-anand00/Edibles---Food-Delevery-",
       liveLink: "https://regal-blini-ac5fd7.netlify.app/",
       isNew: false,
@@ -60,12 +69,12 @@ const Projects = () => {
     {
       title: "Tomato - Food Delevery Website",
       img: Tomato,
-      description: "A Swiggy-inspired food delivery application built using React.js with a clean, responsive UI, real-time restaurant listings, menu browsing, and a smooth user experience — developed as part of my React learning journey.",
+      description:
+        "A Swiggy-inspired food delivery application built using React.js with a clean, responsive UI, real-time restaurant listings, menu browsing, and a smooth user experience — developed as part of my React learning journey.",
       codeLink: "https://github.com/Ujjwal-anand00/tomatoFood",
       liveLink: "https://tomato-ujjwal.netlify.app/",
       isNew: false,
     },
-    
   ];
 
   return (
@@ -111,7 +120,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                     >
-                      Live 
+                      Live
                     </a>
                   </div>
                 </div>
