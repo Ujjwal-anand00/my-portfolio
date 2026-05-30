@@ -1,36 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
-const Nav = ({ homeRef, aboutRef, experianceRef, projectsRef, skillsRef , contactRef }) => {
-  const scrollTo = (ref) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+const Nav = ({ activeSection, onNavigate, theme, onThemeToggle }) => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavigate = (id) => {
+    onNavigate(id);
+    setOpen(false);
   };
-  return (
-    <div className="navbar bg-gradient-to-r from-slate-500 to-slate-800 shadow-sm">
-      <div className="navbar-start">
-        <a className="btn btn-ghost text-2xl font-extrabold ">Ujjwal Anand .</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className="font-light text-xl ">
-            <a onClick={() => scrollTo(homeRef)}>Home</a>
-          </li>
-          <li className="font-light text-xl ">
-            <a onClick={() => scrollTo(experianceRef)} >Experience</a>
-          </li>
-          <li className="font-light text-xl ">
-            <a onClick={() => scrollTo(projectsRef)}>Projects</a>
-          </li>
-          <li className="font-light text-xl ">
-            <a onClick={() => scrollTo(skillsRef)}>Skills</a>
-          </li>
 
-        </ul>
+  return (
+    <header className={`site-nav ${scrolled ? "is-scrolled" : ""}`}>
+      <a className="brand-lockup" onClick={() => handleNavigate("home")} aria-label="Go to home">
+        <span>UA</span>
+        <div>
+          <strong>Ujjwal Anand</strong>
+          <small>Full Stack Developer</small>
+        </div>
+      </a>
+
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={activeSection === item.id ? "active" : ""}
+            onClick={() => handleNavigate(item.id)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      <div className="nav-actions">
+        <button className="icon-button" onClick={onThemeToggle} aria-label="Toggle color theme">
+          {theme === "dark" ? <FiSun /> : <FiMoon />}
+        </button>
+        <button className="nav-cta" onClick={() => handleNavigate("contact")}>
+          Hire me
+        </button>
+        <button className="icon-button mobile-trigger" onClick={() => setOpen(true)} aria-label="Open menu">
+          <FiMenu />
+        </button>
       </div>
-      <div className="navbar-end">
-        <a onClick={() => scrollTo(contactRef)} className="btn">CONTACT NOW</a>
+
+      <div className={`mobile-nav ${open ? "open" : ""}`}>
+        <div className="mobile-nav-panel">
+          <div className="mobile-nav-head">
+            <span>Navigation</span>
+            <button className="icon-button" onClick={() => setOpen(false)} aria-label="Close menu">
+              <FiX />
+            </button>
+          </div>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={activeSection === item.id ? "active" : ""}
+              onClick={() => handleNavigate(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 

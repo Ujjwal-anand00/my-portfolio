@@ -1,166 +1,94 @@
-import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FiArrowUpRight, FiMail, FiSend } from "react-icons/fi";
+import { SiLeetcode } from "react-icons/si";
+
+const contactLinks = [
+  { label: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/in/ujjwal-anand63/" },
+  { label: "GitHub", icon: FaGithub, href: "https://github.com/Ujjwal-anand00" },
+  { label: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/_ujjwal.anand_/" },
+  { label: "LeetCode", icon: SiLeetcode, href: "https://leetcode.com/u/ujjwal_anand_7170/" },
+];
 
 const Contact = () => {
   const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  e.preventDefault();
 
-    const currentTime = new Date().toLocaleString();
+  emailjs
+    .sendForm(
+      "service_4znr5r5",
+      "template_968a2wh",
+      form.current,
+      "NqG7h7YmJg60ZBXeh"
+    )
+    .then(
+      () => {
+        alert("Message sent successfully!");
+        form.current.reset();
+      },
+      (error) => {
+        console.error(error);
+        alert("Failed to send message");
+      }
+    );
+};
 
-    const templateParams = {
-      name: form.current.elements.name.value,
-      message: form.current.elements.message.value,
-      time: currentTime,
-      title: "Portfolio Contact Form",
-    };
-    console.log("📤 Sending with params:", templateParams);
-
-    emailjs
-      .send(
-        "service_l7h0e1r", // Replace with your actual Service ID
-        "template_cy2vr7m", // Replace with your actual Template ID
-        templateParams,
-        "NqG7h7YmJg60ZBXeh" // Replace with your actual Public Key
-      )
-      .then(
-        (res) => {
-          console.log("✅ Email sent:", res);
-          alert("✅ Message sent successfully!");
-          form.current.reset();
-        },
-        (error) => {
-          console.error("FAILED...", error); // Add this!
-          alert("❌ Failed to send message. Please try again.");
-        }
-      );
-  };
   return (
-    <div>
-      <section className="bg-gradient-to-r from-slate-500 to-slate-800">
-        <div className="py-16 px-4 mx-auto max-w-6xl">
-          <h2 className="mb-6 text-5xl tracking-tight font-extrabold text-center text-white">
-            Contact Now
-          </h2>
+    <div className="section-shell contact-section">
+      <div className="contact-card">
+        <div className="contact-copy">
+          <span className="section-kicker">Contact Now</span>
+          <h2>Let us build something amazing together.</h2>
+          <div>
+            <p>
+              I'm always open to new opportunities, collaborations, or simply a meaningful conversation.
+              Whether you have a project in mind, a question, or just want to say hello - feel free to
+              reach out. Let's build something amazing together!
+            </p>
+            <p>
+              Let's connect! Whether you're an aspiring collaborator with a vision or a recruiter looking
+              to chat, your message is the first step towards a meaningful conversation. I'm eager to hear
+              from you!
+            </p>
+          </div>
 
-          <div className="flex flex-col lg:flex-row gap-16 justify-between items-center mt-10">
-            {/* Message Paragraph */}
-            <div className="flex gap-20 flex-col">
-              <p className="font-light text-gray-100 text-xl text-center lg:text-left max-w-2xl leading-relaxed">
-                I'm always open to new opportunities, collaborations, or simply
-                a meaningful conversation. Whether you have a project in mind, a
-                question, or just want to say hello — feel free to reach out.
-                Let's build something amazing together!
-              </p>
-              <p className="font-light text-gray-100 text-xl text-center lg:text-left max-w-2xl leading-relaxed">
-                Let's connect! Whether you're an aspiring collaborator with a
-                vision or a recruiter looking to chat, your message is the first
-                step towards a meaningful conversation. I'm eager to hear from
-                you!
-              </p>
-              <div className="flex gap-10 text-3xl">
-                <a
-                  href="https://www.linkedin.com/in/ujjwal-anand63/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaLinkedin className="hover:text-blue-600" />
-                </a>
-                <a
-                  href="https://github.com/Ujjwal-anand00"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaGithub className="hover:text-black" />
-                </a>
-                <a
-                  href="https://www.instagram.com/_ujjwal.anand_/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <FaInstagram className="hover:text-pink-500" />
-                </a>
-                <a
-                  href="https://leetcode.com/u/ujjwal_anand_7170/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SiLeetcode className="hover:text-yellow-500" />
-                </a>
-              </div>
-            </div>
+          
 
-            {/* Contact Form */}
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              action="#"
-              className="w-full max-w-lg bg-slate-700 p-8 rounded-xl shadow-xl"
-            >
-              <div className="mb-5">
-                <label
-                  htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-300"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name" // ✅ Needed for template variable {{name}}
-                  placeholder="Enter your name..."
-                  className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                  required
-                />
-              </div>
-              <div className="mb-5">
-                <label
-                  htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-300"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email" // ✅ Needed for template variable {{name}}
-                  placeholder="Enter your Email..."
-                  className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="message"
-                  className="block mb-2 text-sm font-medium text-gray-300"
-                >
-                  Your message
-                </label>
-                <textarea
-                  id="message"
-                  name="message" // ✅ Needed for template variable {{message}}
-                  rows="6"
-                  placeholder="Leave a comment..."
-                  className="w-full p-3 rounded-lg border border-gray-400 bg-slate-600 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-800 hover:from-blue-400 hover:to-green-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-lg"
-              >
-                Send Message
-              </button>
-            </form>
+          <div className="contact-socials">
+            {contactLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                  <Icon />
+                  {link.label}
+                  <FiArrowUpRight />
+                </a>
+              );
+            })}
           </div>
         </div>
-      </section>
+
+        <form ref={form} onSubmit={sendEmail} action="#" className="contact-form">
+          <label htmlFor="name">
+            Name
+            <input id="name" type="text" name="name" placeholder="Enter your name..." required />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input id="email" type="email" name="email" placeholder="Enter your Email..." required />
+          </label>
+          <label htmlFor="message">
+            Your message
+            <textarea id="message" name="message" rows="6" placeholder="Leave a comment..." required />
+          </label>
+          <button className="primary-button" type="submit">
+            Send Message <FiSend />
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
