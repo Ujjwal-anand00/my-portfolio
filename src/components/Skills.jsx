@@ -264,7 +264,7 @@ export default function Skills() {
           </div>
           <span>{selectedCapability?.title}</span>
           <h3>{selectedCapability?.summary}</h3>
-          
+
         </article>
 
         <div className="skills-grid expanded">
@@ -274,7 +274,7 @@ export default function Skills() {
         </div>
       </motion.div>
 
-      
+
     </motion.div>
   );
 }

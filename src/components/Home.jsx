@@ -98,7 +98,7 @@ const Home = ({ onNavigate }) => {
           </button>
           <a
             className="secondary-button"
-            href="https://drive.google.com/file/d/1MU3Lc0Uk7x90saiTdzS78Vacdx5iFWev/view?usp=sharing"
+            href="https://drive.google.com/file/d/1cZOtq34HLsAuFTAFKBkPN8ZvifC9HLhG/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -176,17 +176,6 @@ const Projects = () => {
     dragState.current = { active: false, startX: 0, scrollLeft: 0, pointerId: null };
   };
 
-  const handleWheel = (event) => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const isMostlyVertical = Math.abs(event.deltaY) > Math.abs(event.deltaX);
-    if (!isMostlyVertical) return;
-
-    event.preventDefault();
-    track.scrollBy({ left: event.deltaY, behavior: "smooth" });
-  };
-
   useEffect(() => {
     updateScrollState();
     const track = trackRef.current;
@@ -246,7 +235,6 @@ const Projects = () => {
           onPointerUp={stopDragging}
           onPointerCancel={stopDragging}
           onPointerLeave={stopDragging}
-          onWheel={handleWheel}
         >
         {projectList.map((project, index) => (
           <motion.article

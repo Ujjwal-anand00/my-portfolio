@@ -1,12 +1,88 @@
-# React + Vite
+# Ujjwal Anand - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive, and interactive personal portfolio designed to showcase my projects, skills, and experience as a Software Engineer. Built with **React**, **Vite**, and **Framer Motion**, this portfolio focuses on performance, clean aesthetics, and a smooth user experience.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[View Live Portfolio Here](#) *(Replace with actual deployment link if available)*
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Modern UI/UX**: Clean, minimalist design with a premium feel and dark mode support.
+- **Interactive Animations**: Smooth micro-interactions, page transitions, and scroll effects powered by Framer Motion.
+- **Dynamic Project Showcase**: A custom horizontal-scrolling project carousel that feels native and responsive.
+- **Fully Responsive**: Optimized for all devices, from large desktop monitors to mobile phones.
+- **Performance Focused**: Built with Vite for lightning-fast HMR and optimized production builds.
+
+## 🛠️ Tech Stack
+
+- **Core**: React 18, Vite
+- **Styling**: Vanilla CSS, Custom CSS Variables, TailwindCSS (optional integration)
+- **Animations**: Framer Motion
+- **Icons**: React Icons (Fi, Fa, Si families)
+- **Deployment**: Vercel / Netlify / AWS (Depending on configuration)
+
+## 💻 Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### Prerequisites
+
+- Node.js (v16.x or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Ujjwal-anand00/my-portfolio.git
+   cd my-portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## 📂 Project Structure
+
+```
+my-portfolio/
+├── public/                 # Static assets
+├── src/
+│   ├── assets/             # Images, icons, and fonts
+│   ├── components/         # Reusable React components (Home, Projects, Skills, etc.)
+│   ├── index.css           # Global CSS and design tokens
+│   ├── main.jsx            # React application entry point
+│   └── App.jsx             # Main layout and routing
+├── index.html              # HTML template
+├── package.json            # Project dependencies and scripts
+└── vite.config.js          # Vite configuration
+```
+
+## 👨‍💻 About the Developer
+
+**Ujjwal Anand**  
+*Software Engineer • Full Stack Developer • Systems Architect*
+
+A Software Engineer dedicated to architecting and developing scalable, high-performance applications. With a comprehensive background spanning full-stack development, cloud infrastructure, and advanced system design, I consistently deliver robust, production-ready solutions that drive business value and elevate user experiences.
+
+**Connect with me:**
+- [LinkedIn](https://www.linkedin.com/in/ujjwal-anand63/)
+- [GitHub](https://github.com/Ujjwal-anand00)
+- [LeetCode](https://leetcode.com/u/ujjwal_anand_7170/)
+- [Instagram](https://www.instagram.com/_ujjwal.anand_/)
+
+## 📝 License
+
+This project is open-source and available under the [MIT License](LICENSE).
