@@ -4,7 +4,7 @@ A modern, responsive, and interactive personal portfolio designed to showcase my
 
 ## 🚀 Live Demo
 
-[View Live Portfolio Here](#) *(Replace with actual deployment link if available)*
+https://ujjwalanand.vercel.app/
 
 ## ✨ Key Features
 
@@ -22,53 +22,6 @@ A modern, responsive, and interactive personal portfolio designed to showcase my
 - **Icons**: React Icons (Fi, Fa, Si families)
 - **Deployment**: Vercel / Netlify / AWS (Depending on configuration)
 
-## 💻 Getting Started
-
-Follow these instructions to get a copy of the project up and running on your local machine.
-
-### Prerequisites
-
-- Node.js (v16.x or higher recommended)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Ujjwal-anand00/my-portfolio.git
-   cd my-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for production**
-   ```bash
-   npm run build
-   ```
-
-## 📂 Project Structure
-
-```
-my-portfolio/
-├── public/                 # Static assets
-├── src/
-│   ├── assets/             # Images, icons, and fonts
-│   ├── components/         # Reusable React components (Home, Projects, Skills, etc.)
-│   ├── index.css           # Global CSS and design tokens
-│   ├── main.jsx            # React application entry point
-│   └── App.jsx             # Main layout and routing
-├── index.html              # HTML template
-├── package.json            # Project dependencies and scripts
-└── vite.config.js          # Vite configuration
-```
 
 ## 👨‍💻 About the Developer
 
