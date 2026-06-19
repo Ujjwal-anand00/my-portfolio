@@ -3,7 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 import download from "../assets/download.png";
 import ujjuImg from "../assets/ujju.jpg";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { FiAward, FiBookOpen, FiCode, FiTarget } from "react-icons/fi";
+import { FiAward, FiBookOpen, FiCode, FiTarget, FiBriefcase } from "react-icons/fi";
 import { SiLeetcode } from "react-icons/si";
 
 const stats = [
@@ -23,7 +23,7 @@ const socials = [
 const timeline = [
   {
     icon: FiCode,
-    title: "Hey! I am Ujjwal Anand",
+    title: "Professional Profile",
     detail: "A Full Stack Web Developer, Software Developer, Cyber Security Specialist, and passionate learner driven by curiosity.",
   },
   {
@@ -40,6 +40,11 @@ const timeline = [
     icon: FiAward,
     title: "Technical identity",
     detail: "A cybersecurity-aware developer focused on meaningful digital experiences and user-driven solutions.",
+  },
+  {
+    icon: FiBriefcase,
+    title: "Professional Focus",
+    detail: "Dedicated to delivering high-quality software solutions, optimizing performance, and embracing modern development practices.",
   },
 ];
 

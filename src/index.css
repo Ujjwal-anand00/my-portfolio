@@ -647,7 +647,7 @@ img {
 }
 
 .float-a { top: 52px; left: 18px; }
-.float-b { top: 170px; right: 0; animation-delay: -1s; }
+.float-b { top: 230px; right: -30px; animation-delay: -1s; }
 .float-c { bottom: 145px; left: 0; animation-delay: -1.7s; }
 .float-d { bottom: 44px; right: 70px; animation-delay: -2.4s; }
 .float-e { top: 340px; left: 38px; animation-delay: -3.2s; }
@@ -1300,7 +1300,7 @@ img {
   }
 
   .float-a { left: 0; }
-  .float-b { right: 0; top: 132px; }
+  .float-b { right: -10px; top: 185px; }
   .float-c { bottom: 116px; }
   .float-d { right: 16px; bottom: 20px; }
   .float-e,
@@ -2203,7 +2203,7 @@ img {
 
   /* Float positioning: reduce clutter */
   .float-c { display: none; }
-  .float-b { top: 110px; }
+  .float-b { top: 155px; right: -10px; }
   .float-d { bottom: 12px; right: 8px; }
 
   /* Hero actions and social row */

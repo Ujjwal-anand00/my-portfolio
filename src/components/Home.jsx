@@ -74,11 +74,11 @@ const Home = ({ onNavigate }) => {
           />
         </p>
         <p className="hero-description">
-          I'm Ujjwal Anand, a multidisciplinary software engineer focused on
-          building scalable products, modern web applications, and impactful
-          digital experiences. From full-stack development and cloud deployment
-          to AI-assisted workflows and system design, I transform ideas into
-          reliable, production-ready solutions.
+          A Software Engineer dedicated to architecting and
+          developing scalable, high-performance applications. With a comprehensive
+          background spanning full-stack development, cloud infrastructure, and
+          advanced system design, I consistently deliver robust, production-ready
+          solutions that drive business value and elevate user experiences.
         </p>
 
         <div className="identity-statement">
