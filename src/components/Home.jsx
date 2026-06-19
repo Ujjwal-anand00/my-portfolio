@@ -17,7 +17,7 @@ import {
 import {
   FiArrowUpRight,
   FiDownload,
-  FiMousePointer,
+  FiTerminal,
 } from "react-icons/fi";
 
 const socials = [
@@ -61,9 +61,9 @@ const Home = ({ onNavigate }) => {
           <Typewriter
             words={[
               "Full Stack Developer",
-              "React Experience Builder",
-              "MERN Product Engineer",
-              "Cybersecurity-minded Problem Solver",
+              "Frontend React Specialist",
+              "MERN Stack Engineer",
+              "Secure Systems Developer",
             ]}
             loop={0}
             typeSpeed={70}
@@ -84,7 +84,7 @@ const Home = ({ onNavigate }) => {
         <div className="identity-statement">
           <span>Engineering Identity</span>
           <strong>
-            Full Stack Engineer • Systems Thinker • Product Builder
+            Software Engineer • Full Stack Developer • Systems Architect
           </strong>
         </div>
 
@@ -140,11 +140,11 @@ const Home = ({ onNavigate }) => {
           <div className="metric-strip">
             <div>
               <small>Projects</small>
-              <strong>15+</strong>
+              <strong>12+</strong>
             </div>
             <div>
               <small>Technologies</small>
-              <strong>20+</strong>
+              <strong>25+</strong>
             </div>
             <div>
               <small>Cloud</small>
@@ -152,17 +152,17 @@ const Home = ({ onNavigate }) => {
             </div>
           </div>
           <div className="command-card">
-            <FiMousePointer />
-            <span>Recruiter journey optimized</span>
+            <FiTerminal />
+            <span>Architecting scalable solutions</span>
           </div>
           <div className="signal-grid">
             {[
-              "UI Systems",
-              "APIs",
-              "Auth",
-              "Analytics",
-              "Security",
-              "Cloud",
+              "System Design",
+              "RESTful APIs",
+              "Secure Auth",
+              "Databases",
+              "CI/CD",
+              "Cloud Native",
             ].map((item) => (
               <span key={item}>{item}</span>
             ))}

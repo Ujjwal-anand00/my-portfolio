@@ -18,6 +18,7 @@
 
 .project-showcase-track.featured-grid {
   display: flex;
+  align-items: stretch;
   gap: clamp(1rem, 2vw, 1.5rem);
   overflow-x: auto;
   overflow-y: hidden;
@@ -44,16 +45,29 @@
   flex: 0 0 min(88vw, 520px);
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  min-height: 100%;
+  height: auto;
+  align-self: stretch;
   transform: translateZ(0);
   transition:
     transform 240ms ease,
     box-shadow 240ms ease,
     border-color 240ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-showcase-track .project-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-showcase-track .project-actions {
+  margin-top: auto;
 }
 
 .project-showcase-track .project-card.featured {
-  flex-basis: min(90vw, 620px);
+  flex-basis: min(88vw, 520px);
 }
 
 .project-showcase-track .project-card:hover {
