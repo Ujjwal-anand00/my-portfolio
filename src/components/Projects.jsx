@@ -120,10 +120,25 @@ const Projects = () => {
   const trackRef = useRef(null);
   const dragState = useRef({ active: false, startX: 0, scrollLeft: 0, pointerId: null });
   const [scrollState, setScrollState] = useState({ start: true, end: false });
+  const [isMobile, setIsMobile] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      // Reset expansion when switching to desktop
+      if (window.innerWidth >= 768) {
+        setExpandedIndex(null);
+      }
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const updateScrollState = () => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || isMobile) return;
 
     const maxScroll = track.scrollWidth - track.clientWidth;
     setScrollState({
@@ -134,7 +149,7 @@ const Projects = () => {
 
   const scrollProjects = (direction) => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || isMobile) return;
 
     const firstCard = track.querySelector(".project-card");
     const scrollAmount = firstCard ? firstCard.getBoundingClientRect().width + 24 : track.clientWidth * 0.85;
@@ -142,6 +157,7 @@ const Projects = () => {
   };
 
   const handlePointerDown = (event) => {
+    if (isMobile) return;
     const track = trackRef.current;
     if (!track) return;
 
@@ -156,6 +172,7 @@ const Projects = () => {
   };
 
   const handlePointerMove = (event) => {
+    if (isMobile) return;
     const track = trackRef.current;
     const state = dragState.current;
     if (!track || !state.active) return;
@@ -165,6 +182,7 @@ const Projects = () => {
   };
 
   const stopDragging = () => {
+    if (isMobile) return;
     const track = trackRef.current;
     const state = dragState.current;
     if (!track || !state.active) return;
@@ -174,6 +192,11 @@ const Projects = () => {
       track.releasePointerCapture?.(state.pointerId);
     }
     dragState.current = { active: false, startX: 0, scrollLeft: 0, pointerId: null };
+  };
+
+  const handleCardTap = (index) => {
+    if (!isMobile) return;
+    setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   useEffect(() => {
@@ -188,7 +211,7 @@ const Projects = () => {
       track.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <motion.div
@@ -208,24 +231,28 @@ const Projects = () => {
       </div>
 
       <div className="project-showcase-shell">
-        <button
-          className="showcase-nav showcase-nav-prev"
-          type="button"
-          onClick={() => scrollProjects(-1)}
-          disabled={scrollState.start}
-          aria-label="Previous project"
-        >
-          <FiArrowLeft />
-        </button>
-        <button
-          className="showcase-nav showcase-nav-next"
-          type="button"
-          onClick={() => scrollProjects(1)}
-          disabled={scrollState.end}
-          aria-label="Next project"
-        >
-          <FiArrowRight />
-        </button>
+        {!isMobile && (
+          <>
+            <button
+              className="showcase-nav showcase-nav-prev"
+              type="button"
+              onClick={() => scrollProjects(-1)}
+              disabled={scrollState.start}
+              aria-label="Previous project"
+            >
+              <FiArrowLeft />
+            </button>
+            <button
+              className="showcase-nav showcase-nav-next"
+              type="button"
+              onClick={() => scrollProjects(1)}
+              disabled={scrollState.end}
+              aria-label="Next project"
+            >
+              <FiArrowRight />
+            </button>
+          </>
+        )}
 
         <div
           className="featured-grid project-showcase-track"
@@ -236,14 +263,19 @@ const Projects = () => {
           onPointerCancel={stopDragging}
           onPointerLeave={stopDragging}
         >
-        {projectList.map((project, index) => (
+        {projectList.map((project, index) => {
+          const isExpanded = !isMobile || expandedIndex === index;
+          
+          return (
           <motion.article
             key={project.title}
-            className={`project-card ${index < 2 ? "featured" : ""}`}
+            className={`project-card ${index < 2 ? "featured" : ""} ${isExpanded ? 'is-expanded' : 'is-collapsed'}`}
             initial={{ opacity: 0, y: 34, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.22 }}
-            transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.28), ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: isMobile ? 0 : Math.min(index * 0.06, 0.28), ease: [0.22, 1, 0.36, 1] }}
+            onClick={() => handleCardTap(index)}
+            style={{ cursor: isMobile ? 'pointer' : 'default' }}
           >
             <div className="project-media">
               {project.img ? (
@@ -261,60 +293,85 @@ const Projects = () => {
             </div>
 
             <div className="project-content">
-              <div className="project-meta">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <span>
-                  {project.category}
-                  {project.isNew ? " / New" : ""}
-                </span>
-              </div>
+              <motion.div
+                initial={false}
+                animate={{ 
+                  height: isExpanded ? "auto" : 0, 
+                  opacity: isExpanded ? 1 : 0,
+                  marginBottom: isExpanded ? 12 : 0
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ overflow: "hidden" }}
+              >
+                <div className="project-meta">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>
+                    {project.category}
+                    {project.isNew ? " / New" : ""}
+                  </span>
+                </div>
+              </motion.div>
+              
               <h3>{project.title}</h3>
-              <div className="project-problem">
-                <strong>Problem solved</strong>
-                <span>{project.category}</span>
-              </div>
-              <p>{project.description}</p>
-              <div className="project-system-strip" aria-label={`${project.title} engineering metrics`}>
-                {project.metrics.map((metric) => (
-                  <span key={metric}>{metric}</span>
-                ))}
-              </div>
-              <div className="architecture-list">
-                <strong>Architecture highlights</strong>
-                <div>
-                  {project.architecture.map((item) => (
-                    <span key={item}>{item}</span>
+              
+              <motion.div
+                initial={false}
+                animate={{ 
+                  height: isExpanded ? "auto" : 0, 
+                  opacity: isExpanded ? 1 : 0,
+                  marginTop: isExpanded ? 12 : 0
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ overflow: "hidden" }}
+              >
+                <div className="project-problem">
+                  <strong>Problem solved</strong>
+                  <span>{project.category}</span>
+                </div>
+                <p>{project.description}</p>
+                <div className="project-system-strip" aria-label={`${project.title} engineering metrics`}>
+                  {project.metrics.map((metric) => (
+                    <span key={metric}>{metric}</span>
                   ))}
                 </div>
-              </div>
-              <div className="stack-row">
-                {project.stack.map((tech) => (
-                  <span key={tech}>{tech}</span>
-                ))}
-              </div>
-              <div className="project-actions">
-                {project.codeLink ? (
-                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer">
-                    <FiGithub /> GitHub
-                  </a>
-                ) : (
-                  <span className="project-empty-state">
-                    <FiGithub /> Code link not added
-                  </span>
-                )}
-                {project.liveLink ? (
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                    Live Demo <FiArrowUpRight />
-                  </a>
-                ) : (
-                  <span className="project-empty-state">
-                    <FiLayers /> Live demo not added
-                  </span>
-                )}
-              </div>
+                <div className="architecture-list">
+                  <strong>Architecture highlights</strong>
+                  <div>
+                    {project.architecture.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="stack-row">
+                  {project.stack.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+                <div className="project-actions">
+                  {project.codeLink ? (
+                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      <FiGithub /> GitHub
+                    </a>
+                  ) : (
+                    <span className="project-empty-state">
+                      <FiGithub /> Code link not added
+                    </span>
+                  )}
+                  {project.liveLink ? (
+                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      Live Demo <FiArrowUpRight />
+                    </a>
+                  ) : (
+                    <span className="project-empty-state">
+                      <FiLayers /> Live demo not added
+                    </span>
+                  )}
+                </div>
+              </motion.div>
             </div>
           </motion.article>
-        ))}
+          );
+        })}
         </div>
       </div>
     </motion.div>

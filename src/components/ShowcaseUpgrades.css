@@ -75,7 +75,8 @@
 }
 
 .project-showcase-track .project-media {
-  min-height: clamp(220px, 31vw, 360px);
+  min-height: 300px;
+  height: clamp(300px, 31vw, 360px);
 }
 
 .project-showcase-track .project-media img {
@@ -674,5 +675,52 @@
 
   .skill-card-interactive {
     padding: 0.75rem;
+  }
+}
+
+/* ==========================================
+   MOBILE UX FIX FOR PROJECTS
+========================================== */
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .project-showcase-track .project-media {
+    min-height: 240px;
+    height: clamp(240px, 31vw, 300px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .project-showcase-track.featured-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    cursor: auto !important;
+    touch-action: auto !important;
+    gap: 1.5rem !important;
+    padding-inline: 0 !important;
+  }
+
+  .project-showcase-track .project-card,
+  .project-showcase-track .project-card.featured {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: none !important;
+  }
+
+  .project-showcase-track .project-card:hover {
+    transform: none;
+  }
+
+  .project-showcase-track .project-media {
+    min-height: 160px;
+    height: clamp(160px, 45vw, 220px);
+  }
+  
+  .project-showcase-track .project-content {
+    padding-bottom: 0.5rem;
   }
 }
