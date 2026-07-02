@@ -29,10 +29,11 @@ const Nav = ({ activeSection, onNavigate, theme, onThemeToggle }) => {
   return (
     <header className={`site-nav ${scrolled ? "is-scrolled" : ""}`}>
       <a className="brand-lockup" onClick={() => handleNavigate("home")} aria-label="Go to home">
-        <span>UA</span>
+        <span>
+          <img src="/Logo.png" alt="Logo" />
+        </span>
         <div>
           <strong>Ujjwal Anand</strong>
-          <small>Full Stack Developer</small>
         </div>
       </a>
 
