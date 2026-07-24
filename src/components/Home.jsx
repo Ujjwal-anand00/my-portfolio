@@ -18,7 +18,11 @@ import {
   FiArrowUpRight,
   FiDownload,
   FiTerminal,
+  FiCheckCircle,
+  FiActivity,
+  FiCpu,
 } from "react-icons/fi";
+import CodeEditorWindow from "./CodeEditorWindow";
 
 const socials = [
   {
@@ -56,8 +60,14 @@ const Home = ({ onNavigate }) => {
   return (
     <div className="hero-section section-shell">
       <div className="hero-copy">
-        <h1>Igniting imagination from the void...</h1>
-        <p className="hero-subtitle">
+        <div className="eyebrow">
+          <span className="pulse-dot" />
+          <span>Available for Full-time Roles</span>
+        </div>
+
+        <h1>Architecting Systems From Concept to Scale.</h1>
+
+        <div className="hero-subtitle">
           <Typewriter
             words={[
               "Full Stack Developer",
@@ -72,17 +82,14 @@ const Home = ({ onNavigate }) => {
             cursor
             cursorStyle="_"
           />
-        </p>
+        </div>
+
         <p className="hero-description">
-          A Software Engineer dedicated to architecting and
-          developing scalable, high-performance applications. With a comprehensive
-          background spanning full-stack development, cloud infrastructure, and
-          advanced system design, I consistently deliver robust, production-ready
-          solutions that drive business value and elevate user experiences.
+          A Software Engineer dedicated to architecting and developing scalable, high-performance applications. With a comprehensive background spanning full-stack development, cloud infrastructure, and advanced system design, I consistently deliver robust, production-ready solutions that drive business value and elevate user experiences.
         </p>
 
         <div className="identity-statement">
-          <span>Engineering Identity</span>
+          <span>Engineering Operating System</span>
           <strong>
             Software Engineer • Full Stack Developer • Systems Architect
           </strong>
@@ -94,7 +101,7 @@ const Home = ({ onNavigate }) => {
             className="primary-button"
             onClick={() => onNavigate("projects")}
           >
-            View work <FiArrowUpRight />
+            Explore Projects <FiArrowUpRight />
           </button>
           <a
             className="secondary-button"
@@ -105,6 +112,13 @@ const Home = ({ onNavigate }) => {
             Resume <FiDownload />
           </a>
         </div>
+      </div>
+
+      <div className="hero-visual">
+        <div className="mesh-spotlight" />
+        
+        {/* Animated VS Code Style Editor */}
+        <CodeEditorWindow />
 
         <div className="social-row">
           {socials.map((social) => {
@@ -122,52 +136,6 @@ const Home = ({ onNavigate }) => {
             );
           })}
         </div>
-      </div>
-
-      <div
-        className="hero-visual"
-        aria-hidden="true"
-      >
-        <div className="mesh-spotlight" />
-        <div className="orb orb-one" />
-        <div className="orb orb-two" />
-        <div className="hero-device">
-          <div className="device-topbar">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="metric-strip">
-            <div>
-              <small>Projects</small>
-              <strong>12+</strong>
-            </div>
-            <div>
-              <small>Technologies</small>
-              <strong>25+</strong>
-            </div>
-            <div>
-              <small>Cloud</small>
-              <strong>AWS</strong>
-            </div>
-          </div>
-          <div className="command-card">
-            <FiTerminal />
-            <span>Architecting scalable solutions</span>
-          </div>
-          <div className="signal-grid">
-            {[
-              "System Design",
-              "RESTful APIs",
-              "Secure Auth",
-              "Databases",
-              "CI/CD",
-              "Cloud Native",
-            ].map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
 
         {floatingTech.map((tech) => {
           const Icon = tech.icon;
@@ -184,3 +152,4 @@ const Home = ({ onNavigate }) => {
 };
 
 export default Home;
+

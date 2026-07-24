@@ -5,8 +5,17 @@ import GitHookUP from "../assets/projects/GitHookUP.png";
 import Gyano from "../assets/projects/Gyano.png";
 import UMDB from "../assets/projects/Movie.png";
 import Tomato from "../assets/projects/Tomato.png";
-import { motion } from "framer-motion";
-import { FiArrowLeft, FiArrowRight, FiArrowUpRight, FiGithub, FiLayers, FiZap } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FiArrowLeft,
+  FiArrowRight,
+  FiArrowUpRight,
+  FiChevronDown,
+  FiChevronUp,
+  FiGithub,
+  FiLayers,
+  FiZap,
+} from "react-icons/fi";
 import "./ShowcaseUpgrades.css";
 
 const projectList = [
@@ -126,10 +135,6 @@ const Projects = () => {
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      // Reset expansion when switching to desktop
-      if (window.innerWidth >= 768) {
-        setExpandedIndex(null);
-      }
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -166,9 +171,8 @@ const Projects = () => {
       startX: event.clientX,
       scrollLeft: track.scrollLeft,
       pointerId: event.pointerId,
+      moved: false,
     };
-    track.classList.add("is-dragging");
-    track.setPointerCapture?.(event.pointerId);
   };
 
   const handlePointerMove = (event) => {
@@ -177,26 +181,30 @@ const Projects = () => {
     const state = dragState.current;
     if (!track || !state.active) return;
 
-    event.preventDefault();
-    track.scrollLeft = state.scrollLeft - (event.clientX - state.startX);
+    const diff = Math.abs(event.clientX - state.startX);
+    if (diff > 6) {
+      state.moved = true;
+      track.classList.add("is-dragging");
+      event.preventDefault();
+      track.scrollLeft = state.scrollLeft - (event.clientX - state.startX);
+    }
   };
 
   const stopDragging = () => {
     if (isMobile) return;
     const track = trackRef.current;
-    const state = dragState.current;
-    if (!track || !state.active) return;
+    if (!track) return;
 
     track.classList.remove("is-dragging");
-    if (state.pointerId !== null) {
-      track.releasePointerCapture?.(state.pointerId);
-    }
-    dragState.current = { active: false, startX: 0, scrollLeft: 0, pointerId: null };
+    dragState.current.active = false;
   };
 
-  const handleCardTap = (index) => {
-    if (!isMobile) return;
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const handleCardToggle = (index, event) => {
+    if (dragState.current.moved) {
+      dragState.current.moved = false;
+      return;
+    }
+    setExpandedIndex((prev) => (prev === index ? null : index));
   };
 
   useEffect(() => {
@@ -225,8 +233,7 @@ const Projects = () => {
         <span>Selected Work</span>
         <h2>Building Products, Systems & Experiences</h2>
         <p>
-          A collection of projects where engineering, problem-solving, and product thinking come together to
-          create meaningful digital experiences.
+          Explore interactive project cards. Click any card or details button to expand architectural details, engineering metrics, and live demo links.
         </p>
       </div>
 
@@ -264,7 +271,7 @@ const Projects = () => {
           onPointerLeave={stopDragging}
         >
         {projectList.map((project, index) => {
-          const isExpanded = !isMobile || expandedIndex === index;
+          const isExpanded = expandedIndex === index;
           
           return (
           <motion.article
@@ -274,8 +281,8 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: isMobile ? 0 : Math.min(index * 0.06, 0.28), ease: [0.22, 1, 0.36, 1] }}
-            onClick={() => handleCardTap(index)}
-            style={{ cursor: isMobile ? 'pointer' : 'default' }}
+            onClick={(e) => handleCardToggle(index, e)}
+            style={{ cursor: 'pointer' }}
           >
             <div className="project-media">
               {project.img ? (
@@ -293,47 +300,54 @@ const Projects = () => {
             </div>
 
             <div className="project-content">
+              <div className="project-meta">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>
+                  {project.category}
+                  {project.isNew ? " • New" : ""}
+                </span>
+              </div>
+
+              <div className="project-title-row">
+                <h3>{project.title}</h3>
+                <button
+                  type="button"
+                  className="expand-pill"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCardToggle(index, e);
+                  }}
+                  aria-expanded={isExpanded}
+                  aria-label={`${isExpanded ? "Collapse" : "Expand"} ${project.title} details`}
+                >
+                  <span>{isExpanded ? "Less" : "Details"}</span>
+                  {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
+                </button>
+              </div>
+              
               <motion.div
                 initial={false}
                 animate={{ 
                   height: isExpanded ? "auto" : 0, 
                   opacity: isExpanded ? 1 : 0,
-                  marginBottom: isExpanded ? 12 : 0
+                  marginTop: isExpanded ? 14 : 0
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                style={{ overflow: "hidden" }}
-              >
-                <div className="project-meta">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span>
-                    {project.category}
-                    {project.isNew ? " / New" : ""}
-                  </span>
-                </div>
-              </motion.div>
-              
-              <h3>{project.title}</h3>
-              
-              <motion.div
-                initial={false}
-                animate={{ 
-                  height: isExpanded ? "auto" : 0, 
-                  opacity: isExpanded ? 1 : 0,
-                  marginTop: isExpanded ? 12 : 0
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.38, ease: "easeInOut" }}
                 style={{ overflow: "hidden" }}
               >
                 <div className="project-problem">
                   <strong>Problem solved</strong>
                   <span>{project.category}</span>
                 </div>
+
                 <p>{project.description}</p>
+
                 <div className="project-system-strip" aria-label={`${project.title} engineering metrics`}>
                   {project.metrics.map((metric) => (
                     <span key={metric}>{metric}</span>
                   ))}
                 </div>
+
                 <div className="architecture-list">
                   <strong>Architecture highlights</strong>
                   <div>
@@ -342,31 +356,39 @@ const Projects = () => {
                     ))}
                   </div>
                 </div>
+
                 <div className="stack-row">
                   {project.stack.map((tech) => (
                     <span key={tech}>{tech}</span>
                   ))}
                 </div>
-                <div className="project-actions">
-                  {project.codeLink ? (
-                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      <FiGithub /> GitHub
-                    </a>
-                  ) : (
-                    <span className="project-empty-state">
-                      <FiGithub /> Code link not added
-                    </span>
-                  )}
-                  {project.liveLink ? (
-                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      Live Demo <FiArrowUpRight />
-                    </a>
-                  ) : (
-                    <span className="project-empty-state">
-                      <FiLayers /> Live demo not added
-                    </span>
-                  )}
-                </div>
+
+                {(project.liveLink || project.codeLink) && (
+                  <div className="project-actions">
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="live-demo-button"
+                      >
+                        🌐 Live Demo <FiArrowUpRight />
+                      </a>
+                    )}
+                    {project.codeLink && (
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="source-code-button"
+                      >
+                        💻 Source Code <FiGithub />
+                      </a>
+                    )}
+                  </div>
+                )}
               </motion.div>
             </div>
           </motion.article>

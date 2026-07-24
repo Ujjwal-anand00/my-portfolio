@@ -17,7 +17,7 @@ const Body = () => {
   const skillsRef = useRef(null);
   const contactRef = useRef(null);
   const [activeSection, setActiveSection] = useState("home");
-  const [theme, setTheme] = useState("dark");
+  const [theme] = useState("light");
   const [loading, setLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [cursor, setCursor] = useState({ x: -200, y: -200 });
@@ -111,11 +111,7 @@ const Body = () => {
           <span key={index} style={{ "--i": index }} />
         ))}
       </div>
-      <aside className="system-rail" aria-label="Engineering operating system status">
-        <span className="rail-dot" />
-        <span>Identity OS</span>
-        <strong>{activeSection}</strong>
-      </aside>
+
 
       <Nav
         activeSection={activeSection}

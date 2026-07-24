@@ -1,9 +1,8 @@
 import React from "react";
 import { Typewriter } from "react-simple-typewriter";
-import download from "../assets/download.png";
 import ujjuImg from "../assets/ujju.jpg";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { FiAward, FiBookOpen, FiCode, FiTarget, FiBriefcase } from "react-icons/fi";
+import { FiAward, FiBookOpen, FiCode, FiTarget, FiBriefcase, FiDownload } from "react-icons/fi";
 import { SiLeetcode } from "react-icons/si";
 
 const stats = [
@@ -90,7 +89,7 @@ const About = () => {
               rel="noopener noreferrer"
               className="resume-button"
             >
-              Download Resume <img src={download} alt="" />
+              Download Resume <FiDownload />
             </a>
             <div className="social-row">
               {socials.map((social) => {
