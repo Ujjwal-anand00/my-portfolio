@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { FiCode, FiTerminal, FiLayers, FiCpu, FiCheck } from "react-icons/fi";
+import { FiCheck, FiCopy, FiTerminal } from "react-icons/fi";
 
 const codeSnippets = [
   {
     tab: "engineer.ts",
-    language: "typescript",
+    label: "1:vim(engineer.ts)*",
     code: `const engineer = {
   name: "Ujjwal Anand",
-  role: "Full Stack Engineer",
+  role: "Full Stack Engineer & Systems Developer",
   education: "B.Tech CSE @ LPU",
-  status: "Open to opportunities",
+  status: "🟢 Available for Full-Time Roles",
   stack: [
-    "React",
+    "React.js",
     "TypeScript",
     "Node.js",
-    "MongoDB"
+    "MongoDB",
+    "AWS & Docker"
   ],
-  passion: "Building scalable products"
-};`
+  mission: "Architecting scalable systems & high-impact products"
+};`,
   },
   {
     tab: "architecture.config.ts",
-    language: "typescript",
+    label: "2:vim(arch.config.ts)",
     code: `interface SystemArchitecture {
   frontend: "React + TypeScript + Tailwind",
   backend: "Node.js + Express + REST APIs",
@@ -29,36 +30,20 @@ const codeSnippets = [
   database: "MongoDB + PostgreSQL",
   cloud: "AWS EC2 + Nginx + PM2",
   status: "Production Ready ⚡"
-};`
+};`,
   },
   {
     tab: "deploy.sh",
-    language: "bash",
-    code: `/* Production Deployment */
+    label: "3:sh(deploy.sh)",
+    code: `#!/usr/bin/env bash
+# Production Continuous Deployment
 $ docker-compose up -d --build
-[+] Building 8/8
- ✔ Container mongodb      Started  0.3s
- ✔ Container api-server   Running  0.5s
- ✔ Container nginx-proxy  Active   0.2s
-[SUCCESS] Live @ https://gyano.vercel.app`
+[+] Building 8/8 [COMPLETE]
+  ✔ Container mongodb      Started  0.2s
+  ✔ Container api-server   Running  0.4s
+  ✔ Container nginx-proxy  Active   0.1s
+[SUCCESS] Live @ https://gyano.vercel.app`,
   },
-  {
-    tab: "useAnalytics.tsx",
-    language: "typescript",
-    code: `export const useProductEngine = () => {
-  const [status, setStatus] = useState("optimal");
-
-  useEffect(() => {
-    const system = initEngine({
-      realtime: true,
-      performance: "high"
-    });
-    return () => system.destroy();
-  }, []);
-
-  return { status, ready: true };
-};`
-  }
 ];
 
 export default function CodeEditorWindow() {
@@ -72,10 +57,10 @@ export default function CodeEditorWindow() {
 
   useEffect(() => {
     let timer;
-    const typingSpeed = isDeleting ? 16 : 30;
+    const typingSpeed = isDeleting ? 12 : 24;
 
     if (!isDeleting && displayedText === fullText) {
-      timer = setTimeout(() => setIsDeleting(true), 2800);
+      timer = setTimeout(() => setIsDeleting(true), 3500);
     } else if (isDeleting && displayedText === "") {
       setIsDeleting(false);
       setSnippetIndex((prev) => (prev + 1) % codeSnippets.length);
@@ -97,98 +82,65 @@ export default function CodeEditorWindow() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const renderHighlightedCode = (text) => {
-    const lines = text.split("\n");
-    return lines.map((line, lIdx) => {
-      const tokens = line.split(/(\s+|"[^"]*"|'[^']*'|`[^`]*`|\b(?:const|let|var|interface|export|return|true|false|null|undefined|import|from|async|await)\b|\b(?:name|role|education|status|stack|passion|frontend|backend|realtime|database|cloud|ready|performance)\b|(?:\/\*.*?\*\/|\/\/.*|\$[^\n]*))/g);
-
-      return (
-        <div key={lIdx} className="editor-line">
-          <span className="line-number">{(lIdx + 1).toString().padStart(2, "0")}</span>
-          <span className="line-content">
-            {tokens.map((token, tIdx) => {
-              if (!token) return null;
-              if (/^(const|let|var|interface|export|return|import|from|async|await)$/.test(token)) {
-                return <span key={tIdx} className="token-keyword">{token}</span>;
-              }
-              if (/^(true|false|null|undefined)$/.test(token)) {
-                return <span key={tIdx} className="token-boolean">{token}</span>;
-              }
-              if (/^("[^"]*"|'[^']*'|`[^`]*`)$/.test(token)) {
-                return <span key={tIdx} className="token-string">{token}</span>;
-              }
-              if (/^(name|role|education|status|stack|passion|frontend|backend|realtime|database|cloud|ready|performance)$/.test(token)) {
-                return <span key={tIdx} className="token-property">{token}</span>;
-              }
-              if (token.startsWith("//") || token.startsWith("/*") || token.startsWith("$") || token.startsWith("[+]") || token.startsWith("✔") || token.startsWith("[SUCCESS]")) {
-                return <span key={tIdx} className="token-comment">{token}</span>;
-              }
-              return <span key={tIdx} className="token-default">{token}</span>;
-            })}
-            {lIdx === lines.length - 1 && <span className="blinking-cursor" />}
-          </span>
-        </div>
-      );
-    });
-  };
+  const lines = displayedText.split("\n");
 
   return (
-    <div className="vscode-window-wrapper">
-      <div className="vscode-window-card">
-        {/* Top Header */}
-        <div className="vscode-header">
-          <div className="window-controls">
-            <span className="dot red" />
-            <span className="dot yellow" />
-            <span className="dot green" />
-          </div>
-
-          <div className="window-tabs">
-            {codeSnippets.map((snip, i) => (
-              <button
-                key={snip.tab}
-                className={`tab-item ${i === snippetIndex ? "active" : ""}`}
-                onClick={() => {
-                  setDisplayedText("");
-                  setIsDeleting(false);
-                  setSnippetIndex(i);
-                }}
-              >
-                <FiCode className="tab-icon" />
-                <span>{snip.tab}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="header-actions">
-            <span className="engine-status-badge">
-              <span className="status-dot" />
-              LIVE ENGINE
-            </span>
-          </div>
+    <div className="editor-window w-full overflow-hidden">
+      {/* TMUX Window Titlebar */}
+      <div className="editor-titlebar flex justify-between items-center gap-2 overflow-x-auto">
+        <div className="editor-tabs flex items-center gap-1 overflow-x-auto scrollbar-none flex-nowrap shrink">
+          {codeSnippets.map((snippet, idx) => (
+            <button
+              key={snippet.tab}
+              type="button"
+              className={`editor-tab-item whitespace-nowrap ${snippetIndex === idx ? "active" : ""}`}
+              onClick={() => {
+                setSnippetIndex(idx);
+                setDisplayedText("");
+                setIsDeleting(false);
+              }}
+            >
+              {snippet.label}
+            </button>
+          ))}
         </div>
 
-        {/* Code Content View */}
-        <div className="vscode-body">
-          <div className="code-container">
-            {renderHighlightedCode(displayedText)}
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="text-xs text-[#33ff00] hover:text-[#ffb000] flex items-center gap-1 font-mono uppercase whitespace-nowrap shrink-0 pl-1"
+          title="Yank / Copy snippet"
+        >
+          {copied ? <FiCheck /> : <FiCopy />}
+          <span className="hidden sm:inline">{copied ? "[YANKED]" : "[YANK]"}</span>
+        </button>
+      </div>
 
-        {/* Footer Status Strip */}
-        <div className="vscode-footer">
-          <div className="footer-left">
-            <span className="footer-pill">
-              <FiCpu /> TypeScript 5.4
+      {/* Editor Body with Monospaced Lines */}
+      <div className="editor-body-split overflow-x-auto">
+        {lines.map((line, idx) => (
+          <div key={idx} className="editor-line-row">
+            <span className="editor-line-num select-none">
+              {String(idx + 1).padStart(2, "0")}
             </span>
-            <span className="footer-pill">
-              <FiLayers /> React 19
+            <span className="editor-line-content font-mono">
+              {line}
+              {idx === lines.length - 1 && <span className="term-cursor">█</span>}
             </span>
           </div>
-          <button className="copy-btn" onClick={handleCopy} aria-label="Copy snippet">
-            {copied ? <FiCheck className="text-emerald-500" /> : <FiTerminal />}
-            <span>{copied ? "Copied" : "Copy"}</span>
-          </button>
+        ))}
+      </div>
+
+      {/* VIM Statusline */}
+      <div className="editor-statusbar flex justify-between items-center gap-2 text-[11px] overflow-hidden whitespace-nowrap">
+        <div className="flex items-center gap-2 truncate">
+          <span>-- NORMAL --</span>
+          <span className="text-black font-semibold truncate">[{currentSnippet.tab}]</span>
+          <span className="hidden sm:inline">git:(main)</span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="hidden xs:inline">utf-8</span>
+          <span>{lines.length}:1</span>
         </div>
       </div>
     </div>
